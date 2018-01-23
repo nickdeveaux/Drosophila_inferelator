@@ -104,11 +104,6 @@ done
 
 bedtools=`which bedtools` 
 
-for f in $wd/motifs/*.bed; do
-  echo $f
-  $bedtools closest -a $f -b $peaksbed > $f.closest
-done
-
 log "Finished converting fimo txt outputs to bed files"
 
 # find the target genes for each motif
