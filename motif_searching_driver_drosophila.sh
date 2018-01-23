@@ -10,14 +10,16 @@ export PATH=/mnt/xfs1/bioinfoCentos7/software/installs/meme/4.10.1/bin:$PATH
 export PATH=/mnt/xfs1/bioinfoCentos7/software/installs/bedtools/bedtools-2.25.0:$PATH
 export PATH=/mnt/xfs1/bioinfoCentos7/software/installs/python/anaconda/bin:$PATH
 
-peaksbed=$1
-distance=$2
+peaksbed=/mnt/ceph/users/ndeveaux/reference/drosophila_melanogaster/1kb_TSS_nomito_sorted_filtered_short_chroms.bed
+# Alternatively, use the 1kb:
+# /mnt/ceph/users/ndeveaux/reference/drosophila_melanogaster/introns_final.bed
+distance=0
 
-genome="/mnt/ceph/users/ndeveaux/reference/drosophila_melanogaster/dm6.fa.fai"
-gtf="/mnt/ceph/users/ndeveaux/reference/drosophila_melanogaster/sorted_genes.bed"
-motif_database="/mnt/home/victle/Drosophila_inf/fly_factor_survey.meme"
+genome="/mnt/ceph/users/ndeveaux/reference/drosophila_melanogaster/dm6.fa"
+window_file=$peaksbed
+motif_database="/mnt/ceph/users/ndeveaux/reference/drosophila_melanogaster/fly_factor_survey.meme"
 # The corresponding metadata file is TF_Information_hg19_em.txt
-output_dir="/mnt/home/victle/Drosophila_inf/flyfactorsurvey"
+output_dir="/mnt/ceph/users/ndeveaux/DMel_Inferelator/flyfactorsurvey_motif_finding_output"
 bgOrder=1
 
 mkdir -p $output_dir
@@ -82,7 +84,7 @@ for motif in $(cat "$wd/motifs.txt"); do
   echo "$fimo \
                 --parse-genomic-coord \
                 --text \
-                --thresh .0001 \
+                --thresh .001 \
                 --bgfile ${localBkgFile} \
                 --verbosity 1 \
                 --motif ${motif} $motif_database \
@@ -117,7 +119,7 @@ for f in $wd/motifs/*.bed; do
     motif=$(basename $f .bed)
     targetbed=${motif}_targets.bed
     # Assign motifs to genes
-    echo "$bedtools window -w $distance -a $f -b $gtf > $wd/targets/$targetbed" >> "$wd/jobs/targets.sh"
+    echo "$bedtools window -w $distance -a $f -b $window_file > $wd/targets/$targetbed" >> "$wd/jobs/targets.sh"
   fi
 done
 

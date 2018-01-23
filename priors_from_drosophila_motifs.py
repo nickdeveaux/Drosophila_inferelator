@@ -8,7 +8,6 @@ import pandas
 
 ndeveaux_reference="/mnt/ceph/users/ndeveaux/reference/drosophila_melanogaster"
 genome = os.path.join(ndeveaux_reference, "dm6.fa")
-gtf = os.path.join(ndeveaux_reference, "genes.gtf")
 
 # Copied over survey meme from /mnt/home/victle/Drosophila_inf/combined.meme.txt
 annotationfile = os.path.join(ndeveaux_reference, "survey.meme.txt")
