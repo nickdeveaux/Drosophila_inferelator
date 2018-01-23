@@ -17,7 +17,7 @@ peaksbed=$1
 distance=0
 
 genome="/mnt/ceph/users/ndeveaux/reference/drosophila_melanogaster/dm6.fa"
-window_file=$peaksbed
+window_file=$2
 motif_database="/mnt/ceph/users/ndeveaux/reference/drosophila_melanogaster/fly_factor_survey.meme"
 # The corresponding metadata file is TF_Information_hg19_em.txt
 output_dir="/mnt/ceph/users/ndeveaux/DMel_Inferelator/flyfactorsurvey_motif_finding_output"
