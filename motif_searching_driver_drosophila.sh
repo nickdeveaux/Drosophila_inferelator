@@ -10,9 +10,10 @@ export PATH=/mnt/xfs1/bioinfoCentos7/software/installs/meme/4.10.1/bin:$PATH
 export PATH=/mnt/xfs1/bioinfoCentos7/software/installs/bedtools/bedtools-2.25.0:$PATH
 export PATH=/mnt/xfs1/bioinfoCentos7/software/installs/python/anaconda/bin:$PATH
 
-peaksbed=/mnt/ceph/users/ndeveaux/reference/drosophila_melanogaster/1kb_TSS_nomito_sorted_filtered_short_chroms.bed
+peaksbed=$1
+# /mnt/ceph/users/ndeveaux/reference/drosophila_melanogaster/1kb_TSS_nomito_sorted_filtered_short_chroms.bed
 # Alternatively, use the 1kb:
-# /mnt/ceph/users/ndeveaux/reference/drosophila_melanogaster/introns_final.bed
+# /mnt/ceph/users/ndeveaux/reference/drosophila_melanogaster/introns_sorted_with_gene_name_01_23_2018.bed
 distance=0
 
 genome="/mnt/ceph/users/ndeveaux/reference/drosophila_melanogaster/dm6.fa"
